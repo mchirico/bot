@@ -7,6 +7,13 @@ docker-build:
 	docker build --no-cache -t gcr.io/$(PROJECT)/$(NAME):$(TAG) -f Dockerfile .
 
 
+dev:
+	cp .envDev .env
+
+
+prod:
+	cp .envProduction .env
+
 kind:
 	kind load docker-image gcr.io/$(PROJECT)/$(NAME):$(TAG)
 
@@ -18,6 +25,7 @@ pull:
 
 
 deploy:
+	cp .envProduction .env
 	gcloud config set gcloudignore/enabled false --project $(PROJECT)
 	gcloud builds submit --tag gcr.io/$(PROJECT)/$(NAME)cloud --project $(PROJECT) --timeout 35m23s
 	gcloud run deploy $(NAME)cloud --image gcr.io/$(PROJECT)/$(NAME)cloud \
