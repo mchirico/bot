@@ -7,7 +7,10 @@ import myProbotApp from '../src'
 import { Probot } from 'probot'
 // Requiring our fixtures
 import payload from './fixtures/issues.opened.json'
-const issueCreatedBody = { body: 'Thanks for opening this issue!' }
+const issueCreatedBody = {
+  body: 'hiimbex,\n' +
+      'Thanks for opening this issue!'
+}
 const fs = require('fs')
 const path = require('path')
 
